@@ -1,9 +1,37 @@
 import React from 'react'
-import { useState } from 'react'
-import { GraduationCap, Github, ExternalLink, Briefcase } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { GraduationCap, Github, ExternalLink, Briefcase, Image, MoveDiagonal } from 'lucide-react'
+import Modal from './components/Modal'
 
 export default function Portfolio() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  
+  useEffect(() => {
+    const stars = document.querySelector('.stars')
+    if (!stars) return
+
+    const createStar = () => {
+      const starEl = document.createElement('span')
+      starEl.className = 'star'
+      const minSize = 1
+      const maxSize = 2
+      const size = Math.random() * (maxSize - minSize) + minSize
+      starEl.style.width = `${size}px`
+      starEl.style.height = `${size}px`
+      starEl.style.left = `${Math.random() * 100}%`
+      starEl.style.top = `${Math.random() * 100}%`
+      starEl.style.animationDelay = `${Math.random() * 10}s`
+      stars.appendChild(starEl)
+    }
+
+    // generate stars (adjust count if needed)
+    for (let i = 0; i <= 500; i++) createStar()
+
+    // optional cleanup on unmount
+    return () => { stars.innerHTML = '' }
+  }, [])
  
   const projects = [
     {
@@ -22,7 +50,12 @@ export default function Portfolio() {
           url: 'https://capychat.com',
           icon: <ExternalLink className="icon" />
         }
-      ]
+      ],
+      demos: [
+        './src/assets/capychat-1.png',
+        '/path/to/capychat-demo2.png',
+        // Add your actual demo image paths here
+      ],
     },
     {
       title: 'AutoBuilder Car Configuration Application',
@@ -40,12 +73,20 @@ export default function Portfolio() {
           url: 'https://autobuilder.com',
           icon: <ExternalLink className="icon" />
         }
-      ]
+      ],
+      demos: [
+        '/path/to/autobuilder-demo1.gif',
+        '/path/to/autobuilder-demo2.png',
+        // Add your actual demo image paths here
+      ],
     }
   ]
 
 
   return (
+    <>
+       {/*<div className="stars" aria-hidden="true"></div>*/}
+ 
     <div className="portfolio-container">
       <div className="portfolio-wrapper">
         <div className="bento-grid">
@@ -80,10 +121,10 @@ export default function Portfolio() {
             </div>
           </div>
           {/* Projects Card */}
-                    {/* Featured Project */}
-                    <div 
-            className={`card project-featured ${hoveredCard === 'project1' ? 'hovered' : ''}`}
-            onMouseEnter={() => setHoveredCard('project1')}
+          {projects.map((project, index) => (
+          <div 
+            className={`card project-featured ${hoveredCard === `project${index}` ? 'hovered' : ''}`}
+            onMouseEnter={() => setHoveredCard(`project${index}`)}
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className="project-overlay"></div>
@@ -99,17 +140,25 @@ export default function Portfolio() {
                   <button className="icon-button">
                     <ExternalLink className="icon-sm" />
                   </button>
+                  <button 
+                    onClick={() => setSelectedProject(project)}
+                    className="icon-button"
+                    aria-label="View demos"
+                  >
+                    <Image className="icon-sm" /> {/* You'd import Image from lucide-react */}
+                  </button>
                 </div>
               </div>
-              <h3 className="project-title">{projects[0].title}</h3>
-              <p className="project-description">{projects[0].description}</p>
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
               <div className="tech-tags">
-                {projects[0].tech.map((tech) => (
+                {project.tech.map((tech) => (
                   <span key={tech} className="tech-tag">{tech}</span>
                 ))}
               </div>
             </div>
           </div>
+          ))}
 
             {/* Experience card content */}
             <div
@@ -118,11 +167,17 @@ export default function Portfolio() {
             onMouseLeave={() => setHoveredCard(null)}
             >
                <h3 className="text-2xl font-bold mb-2">Experience</h3>
-                <h4 className="text-lg font-bold mb-4">Data Annotator/AI Trainer at DataAnnotation.tech</h4>
+                <h4 className="text-lg font-bold mb-4">Data Annotator/AI Trainer at DataAnnotation.tech (Jan 2024-Aug 2025)</h4>
                 <ul className="experience-list text-white/80 text-sm">
                   <li>Created coding projects and challenges used to improve AI coding capabilities</li>
                   <li>Detected and corrected errors in AI produced code to improve accuracy and efficiency</li>
-                  <li>Collaborated with the AI team to improve the accuracy of the AI's code generation</li>
+                  <li>Rated and reviewed coding submissions by peers to check if guidelines were followed</li>
+                </ul>
+                <h4 className="text-lg font-bold mb-4">Freelance Medical/General Transcriptionist (2016-2021)</h4>
+                <ul className="experience-list text-white/80 text-sm">
+                  <li>98% Client satisfaction rate with repeat clients and 4 and 5 star reviews (out of 5)</li>
+                  <li>Top rated freelancer at Upwork for three consecutive years (top 10% of freelancers and agencies for consistent client satisfaction and strong reputations)</li>
+                  <li>Worked with a wide range of clients, from medical professionals to legal firms, transcribing medical reports, focus group discussions and one on one interviews</li>
                 </ul>
             </div>
             {/* Contact card content */}
@@ -150,6 +205,14 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
+      {/* Modal overlay */}
+      <Modal
+        isOpen={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        title={selectedProject?.title || ''}
+        demos={selectedProject?.demos || []}
+      />
+      </>
   )
 }
 
