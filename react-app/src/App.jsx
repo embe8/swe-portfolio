@@ -10,6 +10,7 @@ export default function Portfolio() {
   const [selectedReview, setSelectedReview] = useState(null);
   const [selectedReviewIndex, setSelectedReviewIndex] = useState(null);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+  const [currentProjectDemoIndex, setCurrentProjectDemoIndex] = useState({});
 
 
   
@@ -94,6 +95,12 @@ export default function Portfolio() {
     './src/assets/review-4.png',
   ]
 
+  const demoImages = [
+    './src/assets/capychat-1.png',
+    './src/assets/capychat-2.png',
+
+  ]
+
 
   return (
     <>
@@ -171,34 +178,149 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
-            {/*Thumbnail Portion*/}
-            <div className="project-thumbnails">
-              {project.demos.slice(0, 3).map((demo, demoIdx) => (
-                <img
-                key={demoIdx}
-                src={demo}
-                alt={`project-${index}-demo-${demoIdx + 1}`}
-                className="project-thumbnail-img"
-                onClick={() => {setSelectedProject(project);
-                  setSelectedImageIndex(demoIdx)
-                }}
-              />
-            ))}
-              {project.demos.length > 3 && (
-                <div
-                className="project-thumbnail-more"
+            {/*Thumbnail Portion - Carousel */}
+            <div className="project-demo-carousel">
+              <button
+                className="project-carousel-btn project-carousel-btn-prev"
                 onClick={() => {
-                  setSelectedProject(project);
-                  setSelectedImageIndex(3);
+                  const totalSlides = Math.ceil(project.demos.length / 3);
+                  const currentSlide = currentProjectDemoIndex[index] || 0;
+                  const newSlide = currentSlide === 0 ? totalSlides - 1 : currentSlide - 1;
+                  setCurrentProjectDemoIndex({ ...currentProjectDemoIndex, [index]: newSlide });
                 }}
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="project-carousel-icon" />
+              </button>
+              
+              <div className="project-demo-slide-container">
+                <div 
+                  className="project-demo-slides"
+                  style={{ transform: `translateX(-${(currentProjectDemoIndex[index] || 0) * 100}%)` }}
                 >
-                  +{project.demos.length -3} more
+                  {Array.from({ length: Math.ceil(project.demos.length / 3) }).map((_, slideIdx) => (
+                    <div key={slideIdx} className="project-demo-slide">
+                      {project.demos.slice(slideIdx * 3, slideIdx * 3 + 3).map((demo, demoIdx) => {
+                        const actualIdx = slideIdx * 3 + demoIdx;
+                        return (
+                          <div key={actualIdx} className="project-demo-item">
+                            <img
+                              src={demo}
+                              alt={`project-${index}-demo-${actualIdx + 1}`}
+                              className="project-thumbnail-img"
+                              onClick={() => {
+                                setSelectedProject(project);
+                                setSelectedImageIndex(actualIdx);
+                              }}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                className="project-carousel-btn project-carousel-btn-next"
+                onClick={() => {
+                  const totalSlides = Math.ceil(project.demos.length / 3);
+                  const currentSlide = currentProjectDemoIndex[index] || 0;
+                  const newSlide = currentSlide === totalSlides - 1 ? 0 : currentSlide + 1;
+                  setCurrentProjectDemoIndex({ ...currentProjectDemoIndex, [index]: newSlide });
+                }}
+                aria-label="Next slide"
+              >
+                <ChevronRight className="project-carousel-icon" />
+              </button>
+
+              {Math.ceil(project.demos.length / 3) > 1 && (
+                <div className="project-carousel-dots">
+                  {Array.from({ length: Math.ceil(project.demos.length / 3) }).map((_, slideIdx) => (
+                    <button
+                      key={slideIdx}
+                      className={`project-carousel-dot ${(currentProjectDemoIndex[index] || 0) === slideIdx ? 'active' : ''}`}
+                      onClick={() => setCurrentProjectDemoIndex({ ...currentProjectDemoIndex, [index]: slideIdx })}
+                      aria-label={`Go to slide ${slideIdx + 1}`}
+                    />
+                  ))}
                 </div>
               )}
             </div>
           </div>
           </div>
         ))}
+
+         {/* Project Carousel Card */}                      
+         <div
+            className={`card demos-card ${hoveredCard === 'demos' ? 'hovered' : ''}`}
+            onMouseEnter={() => setHoveredCard('demos')}
+            onMouseLeave={() => setHoveredCard(null)}
+            >
+               <h3 className="text-2xl font-bold mb-4">Upwork Client Reviews</h3>
+               <div className="demos-carousel">
+                 <button
+                   className="carousel-btn carousel-btn-prev"
+                   onClick={() => {
+                     const totalSlides = Math.ceil(reviews.length / 3);
+                     setCurrentReviewIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+                   }}
+                   aria-label="Previous slide"
+                 >
+                   <ChevronLeft className="carousel-icon" />
+                 </button>
+                 
+                 <div className="review-slide-container">
+                   <div 
+                     className="review-slides"
+                     style={{ transform: `translateX(-${currentReviewIndex * 100}%)` }}
+                   >
+                     {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
+                       <div key={slideIdx} className="review-slide">
+                         {reviews.slice(slideIdx * 3, slideIdx * 3 + 3).map((review, reviewIdx) => {
+                           const actualIdx = slideIdx * 3 + reviewIdx;
+                           return (
+                             <div key={actualIdx} className="review-item">
+                               <img
+                                 src={demoImages[actualIdx]}
+                                 alt={`demo-${actualIdx + 1}`}
+                                 className="review-thumbnail-img"
+                                 onClick={() => {
+                                   setSelectedDemo(demoImages);
+                                   setSelectedDemoIndex(actualIdx);
+                                 }}
+                               />
+                             </div>
+                           );
+                         })}
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+
+                 <button
+                   className="carousel-btn carousel-btn-next"
+                   onClick={() => {
+                     const totalSlides = Math.ceil(reviews.length / 3);
+                     setCurrentReviewIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+                   }}
+                   aria-label="Next slide"
+                 >
+                   <ChevronRight className="carousel-icon" />
+                 </button>
+
+                 <div className="carousel-dots">
+                   {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
+                     <button
+                       key={slideIdx}
+                       className={`carousel-dot ${currentReviewIndex === slideIdx ? 'active' : ''}`}
+                       onClick={() => setCurrentReviewIndex(slideIdx)}
+                       aria-label={`Go to slide ${slideIdx + 1}`}
+                     />
+                   ))}
+                 </div>
+               </div>
+            </div>
             {/* Experience card content */}
             <div
             className={`card experience-card ${hoveredCard === 'experience' ? 'hovered' : ''}`}
@@ -225,7 +347,7 @@ export default function Portfolio() {
             onMouseEnter={() => setHoveredCard('reviews')}
             onMouseLeave={() => setHoveredCard(null)}
             >
-               <h3 className="text-2xl font-bold mb-4">Client Reviews</h3>
+               <h3 className="text-2xl font-bold mb-4">Upwork Client Reviews</h3>
                <div className="reviews-carousel">
                  <button
                    className="carousel-btn carousel-btn-prev"
