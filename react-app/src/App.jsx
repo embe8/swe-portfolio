@@ -6,6 +6,8 @@ import Modal from './components/Modal'
 export default function Portfolio() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedReview, setSelectedReview] = useState(null);
 
   
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function Portfolio() {
       ],
       demos: [
         './src/assets/capychat-1.png',
-        '/path/to/capychat-demo2.png',
+        './src/assets/capychat-2.png',
         // Add your actual demo image paths here
       ],
     },
@@ -82,6 +84,13 @@ export default function Portfolio() {
     }
   ]
 
+  const reviews = [
+    './src/assets/review-1.png',
+    './src/assets/review-2.png',
+    './src/assets/review-3.png',
+    './src/assets/review-4.png',
+  ]
+
 
   return (
     <>
@@ -102,24 +111,24 @@ export default function Portfolio() {
               <h2 className="hero-title">Full-Stack Developer</h2>
               <p className="hero-description">Entry-level developer passionate about building intuitive web applications. 
               Experienced in React, Python, and modern web technologies. Always learning and 
-              excited to contribute to innovative projects.</p>
+              excited to contribute to innovative projects. </p>
             </div>
             </div>
               {/* Education Card */}
-          <div 
-            className={`card experience-card ${hoveredCard === 'education' ? 'hovered' : ''}`}
-            onMouseEnter={() => setHoveredCard('education')}
-            onMouseLeave={() => setHoveredCard(null)}
-          >
-            <GraduationCap className="w-8 h-8 text-cyan-400 mb-3" />
-            <h3 className="text-lg font-bold mb-3">Education</h3>
-            <div className="flex flex-wrap gap-2">
-                  <h4>California State University, Long Beach</h4>
-                  <p>Bachelors of Science in Computer Science, 2021-2024</p>
-                  <h4>Mt. San Jacinto College, Menifee, CA</h4>
-                  <p>Associate of Science in Computer Science, 2017-2021</p>
+            <div 
+              className={`card experience-card ${hoveredCard === 'education' ? 'hovered' : ''}`}
+              onMouseEnter={() => setHoveredCard('education')}
+              onMouseLeave={() => setHoveredCard(null)}
+            >
+              <GraduationCap className="w-8 h-8 text-cyan-400 mb-3" />
+              <h3 className="text-lg font-bold mb-3">Education</h3>
+              <div className="flex flex-wrap gap-2">
+                    <h4>California State University, Long Beach</h4>
+                    <p>Bachelors of Science in Computer Science, 2021-2024</p>
+                    <h4>Mt. San Jacinto College, Menifee, CA</h4>
+                    <p>Associate of Science in Computer Science, 2017-2021</p>
+              </div>
             </div>
-          </div>
           {/* Projects Card */}
           {projects.map((project, index) => (
           <div 
@@ -128,6 +137,8 @@ export default function Portfolio() {
             onMouseLeave={() => setHoveredCard(null)}
           >
             <div className="project-overlay"></div>
+            <div className="project-layout">
+              {/* Text content portion */}
             <div className="project-content">
               <div className="project-header">
                 <div className={`project-icon ${projects[0].gradient}`}>
@@ -157,9 +168,34 @@ export default function Portfolio() {
                 ))}
               </div>
             </div>
+            {/*Thumbnail Portion*/}
+            <div className="project-thumbnails">
+              {project.demos.slice(0, 3).map((demo, demoIdx) => (
+                <img
+                key={demoIdx}
+                src={demo}
+                alt={`project-${index}-demo-${demoIdx + 1}`}
+                className="project-thumbnail-img"
+                onClick={() => {setSelectedProject(project);
+                  setSelectedImageIndex(demoIdx)
+                }}
+              />
+            ))}
+              {project.demos.length > 3 && (
+                <div
+                className="project-thumbnail-more"
+                onClick={() => {
+                  setSelectedProject(project);
+                  setSelectedImageIndex(3);
+                }}
+                >
+                  +{project.demos.length -3} more
+                </div>
+              )}
+            </div>
           </div>
-          ))}
-
+          </div>
+        ))}
             {/* Experience card content */}
             <div
             className={`card experience-card ${hoveredCard === 'experience' ? 'hovered' : ''}`}
@@ -180,6 +216,14 @@ export default function Portfolio() {
                   <li>Worked with a wide range of clients, from medical professionals to legal firms, transcribing medical reports, focus group discussions and one on one interviews</li>
                 </ul>
             </div>
+          {/* Reviews Card */}                      
+          <div
+            className={`card reviews-card ${hoveredCard === 'reviews' ? 'hovered' : ''}`}
+            onMouseEnter={() => setHoveredCard('reviews')}
+            onMouseLeave={() => setHoveredCard(null)}
+            >
+               <h3 className="text-2xl font-bold mb-2">ClientReviews</h3>
+            </div>
             {/* Contact card content */}
             <div
               className={`card contact-card ${hoveredCard === 'contact' ? 'hovered' : ''}`}
@@ -190,7 +234,6 @@ export default function Portfolio() {
               <p className="text-white/80 text-sm mb-4">Email: erikaebon@gmail.com</p>
             </div>
             {/* Status Card */}
-           {/* Status Card */}
           <div 
             className={`card status-card ${hoveredCard === 'status' ? 'hovered' : ''}`}
             onMouseEnter={() => setHoveredCard('status')}
@@ -202,9 +245,9 @@ export default function Portfolio() {
               <p className="status-subtitle">Open to entry-level Python & React positions</p>
             </div>
           </div>
-          </div>
         </div>
       </div>
+    </div>
       {/* Modal overlay */}
       <Modal
         isOpen={selectedProject !== null}
