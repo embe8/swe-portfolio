@@ -35,14 +35,17 @@ position: relative;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  border: 2px solid rgba(74, 95, 122, 0.5);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
 .card.hovered {
   transform: scale(1.02);
+  border-color: rgba(96, 165, 250, 0.8);
 }
 
 /* Hero Card */
@@ -199,4 +202,180 @@ position: relative;
   .reviews-card {
     grid-column: span 3;
   }
+}
+
+/* Reviews Carousel */
+.reviews-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.review-slide-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.review-slides {
+  display: flex;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.review-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.5rem;
+}
+
+.review-item {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-thumbnail-img {
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.5);
+  transition: all 0.3s ease;
+  filter: brightness(0.9) contrast(1.1);
+  background: rgba(15, 23, 42, 0.2);
+}
+
+.review-thumbnail-img:hover {
+  border-color: rgba(79, 70, 229, 0.6);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+  transform: scale(1.02);
+  filter: brightness(1) contrast(1.1);
+}
+
+/* Carousel Navigation Buttons */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px solid rgba(79, 70, 229, 0.4);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.carousel-btn:hover {
+  background: rgba(79, 70, 229, 0.6);
+  border-color: rgba(79, 70, 229, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn-prev {
+  left: 1px;
+}
+
+.carousel-btn-next {
+  right: 1px;
+}
+
+.carousel-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px  rgba(79, 70, 229, 0.5);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background: rgba(79, 70, 229, 0.3);
+  border-color: rgba(79, 70, 229, 0.7);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background: rgba(79, 70, 229, 0.8);
+  border-color: rgba(79, 70, 229, 1);
+  width: 24px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .carousel-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .carousel-btn-prev {
+    left: 5px;
+  }
+  
+  .carousel-btn-next {
+    right: 5px;
+  }
+  
+  .review-slide {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .review-thumbnail-img {
+    min-height: 120px;
+    max-height: 150px;
+  }
+}
+
+contact-card {
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  border: 2px solid rgba(74, 95, 122, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }

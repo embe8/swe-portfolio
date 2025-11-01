@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { GraduationCap, Github, ExternalLink, Briefcase, Image, MoveDiagonal } from 'lucide-react'
+import { GraduationCap, Github, ExternalLink, Briefcase, Image, MoveDiagonal, ChevronLeft, ChevronRight } from 'lucide-react'
 import Modal from './components/Modal'
 
 export default function Portfolio() {
@@ -8,6 +8,9 @@ export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedReview, setSelectedReview] = useState(null);
+  const [selectedReviewIndex, setSelectedReviewIndex] = useState(null);
+  const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+
 
   
   useEffect(() => {
@@ -222,7 +225,69 @@ export default function Portfolio() {
             onMouseEnter={() => setHoveredCard('reviews')}
             onMouseLeave={() => setHoveredCard(null)}
             >
-               <h3 className="text-2xl font-bold mb-2">ClientReviews</h3>
+               <h3 className="text-2xl font-bold mb-4">Client Reviews</h3>
+               <div className="reviews-carousel">
+                 <button
+                   className="carousel-btn carousel-btn-prev"
+                   onClick={() => {
+                     const totalSlides = Math.ceil(reviews.length / 3);
+                     setCurrentReviewIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+                   }}
+                   aria-label="Previous slide"
+                 >
+                   <ChevronLeft className="carousel-icon" />
+                 </button>
+                 
+                 <div className="review-slide-container">
+                   <div 
+                     className="review-slides"
+                     style={{ transform: `translateX(-${currentReviewIndex * 100}%)` }}
+                   >
+                     {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
+                       <div key={slideIdx} className="review-slide">
+                         {reviews.slice(slideIdx * 3, slideIdx * 3 + 3).map((review, reviewIdx) => {
+                           const actualIdx = slideIdx * 3 + reviewIdx;
+                           return (
+                             <div key={actualIdx} className="review-item">
+                               <img
+                                 src={review}
+                                 alt={`review-${actualIdx + 1}`}
+                                 className="review-thumbnail-img"
+                                 onClick={() => {
+                                   setSelectedReview(review);
+                                   setSelectedReviewIndex(actualIdx);
+                                 }}
+                               />
+                             </div>
+                           );
+                         })}
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+
+                 <button
+                   className="carousel-btn carousel-btn-next"
+                   onClick={() => {
+                     const totalSlides = Math.ceil(reviews.length / 3);
+                     setCurrentReviewIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+                   }}
+                   aria-label="Next slide"
+                 >
+                   <ChevronRight className="carousel-icon" />
+                 </button>
+
+                 <div className="carousel-dots">
+                   {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
+                     <button
+                       key={slideIdx}
+                       className={`carousel-dot ${currentReviewIndex === slideIdx ? 'active' : ''}`}
+                       onClick={() => setCurrentReviewIndex(slideIdx)}
+                       aria-label={`Go to slide ${slideIdx + 1}`}
+                     />
+                   ))}
+                 </div>
+               </div>
             </div>
             {/* Contact card content */}
             <div
