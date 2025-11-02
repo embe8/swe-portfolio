@@ -112,6 +112,72 @@ position: relative;
     grid-column: span 3;
   }
 }
+
+/* Skills Card */
+.skills-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .skills-card {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-card {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-card {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+/* Skills Card Content */
+.card-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-icon.cyan {
+  color: #06b6d4;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.skill-badge {
+  display: inline-block;
+  background: rgba(51, 65, 85, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.skills-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.skills-section:last-child {
+  margin-bottom: 0;
+}
+
 .stars {
   position: fixed;
   inset: 0;
@@ -210,12 +276,14 @@ position: relative;
   height: auto;
   min-height: 100px;
   max-height: 130px;
-  object-fit: contain;
+  object-fit: cover; /* Change from contain to cover */
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.2s, opacity 0.2s;
   border: 2px solid rgba(79, 70, 229, 0.3);
-  background: rgba(15, 23, 42, 0.2);
+  background: transparent; /* Remove or make transparent */
+  box-sizing: border-box; /* Include border in dimensions */
+  display: block; /* Remove any inline spacing */
 }
 
 .project-thumbnail-img:hover {

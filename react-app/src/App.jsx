@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { GraduationCap, Github, TvMinimal, ExternalLink, Code2, Briefcase, Mail, Image, MoveDiagonal, ChevronLeft, ChevronRight, Linkedin } from 'lucide-react'
+import { GraduationCap, Github, AppWindow, ExternalLink, UserStar, Code2, Briefcase, Mail, Image, MoveDiagonal, ChevronLeft, ChevronRight, Linkedin, Server } from 'lucide-react'
 import Modal from './components/Modal'
 
 export default function Portfolio() {
@@ -83,6 +83,7 @@ export default function Portfolio() {
         './src/assets/chrome_X22blpchgW.gif',
         './src/assets/chrome_QuooudKfXY.gif',
         './src/assets/home-1.png',
+        './src/assets/chrome_ugSu4h9hFT.png',
         './src/assets/model_list.png'
       ],
     }
@@ -145,14 +146,27 @@ export default function Portfolio() {
             onMouseEnter={() => setHoveredCard('skills1')}
             onMouseLeave={() => setHoveredCard(null)}
           >
-            <Code2 className="card-icon cyan" />
-            <h3 className="card-title">Frontend</h3>
-            <div className="tech-tags">
-              {skills.slice(0, 3).map((skill) => (
-                <span key={skill.name} className="skill-badge">
-                  {skill.icon} {skill.name}
-                </span>
-              ))}
+            <div className="skills-section">
+              <Code2 className="card-icon cyan" />
+              <h3 className="card-title">Frontend</h3>
+              <div className="tech-tags">
+                {skills.slice(0, 5).map((skill) => (
+                  <span key={skill.name} className="skill-badge">
+                    {skill.icon} {skill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="skills-section">
+              <Server className="card-icon cyan" />
+              <h3 className="card-title">Backend</h3>
+              <div className="tech-tags">
+                {skills.slice(5).map((skill) => (
+                  <span key={skill.name} className="skill-badge">
+                    {skill.icon} {skill.name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
               {/* Education Card */}
@@ -184,7 +198,7 @@ export default function Portfolio() {
             <div className="project-content">
               <div className="project-header">
               <div className={`project-icon ${projects[0].gradient}`}>
-                  <Briefcase className="icon" />
+                  <AppWindow className="icon" />
                   <h3 className="text-2xl font-bold mb-2">Project</h3>
                 </div>
                 <h3 className="project-title"></h3>         
@@ -295,7 +309,10 @@ export default function Portfolio() {
             onMouseEnter={() => setHoveredCard('experience')}
             onMouseLeave={() => setHoveredCard(null)}
             >
+              <div className="project-icon">
+            <Briefcase className="icon" />
                <h3 className="text-2xl font-bold mb-2">Experience</h3>
+               </div>
                 <h4 className="text-lg font-bold mb-4">Data Annotator/AI Trainer at DataAnnotation.tech (Jan 2024-Aug 2025)</h4>
                 <ul className="experience-list text-white/80 text-sm">
                   <li>Created coding projects and challenges used to improve AI coding capabilities</li>
