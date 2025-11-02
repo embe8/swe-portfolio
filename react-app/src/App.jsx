@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { GraduationCap, Github, ExternalLink, Briefcase, Image, MoveDiagonal, ChevronLeft, ChevronRight } from 'lucide-react'
+import { GraduationCap, Github, TvMinimal, ExternalLink, Code2, Briefcase, Mail, Image, MoveDiagonal, ChevronLeft, ChevronRight, Linkedin } from 'lucide-react'
 import Modal from './components/Modal'
 
 export default function Portfolio() {
@@ -48,19 +48,18 @@ export default function Portfolio() {
       links: [
         {
           label: 'Github',
-          url: 'https://github.com/yourusername/capychat',
+          url: 'https://github.com/embe8/react-chatApp',
           icon: <Github className="icon" />
         },
         {
-          label: 'Live Demo',
-          url: 'https://capychat.com',
+          label: 'Deployed Application',
+          url: 'https://react-chat-app-4bf9-git-main-embes-projects.vercel.app/?_vercel_share=HkQhyhawIVyhoJbIXwpU5lkNSqJANX3F',
           icon: <ExternalLink className="icon" />
         }
       ],
       demos: [
         './src/assets/capychat-1.png',
         './src/assets/capychat-2.png',
-        // Add your actual demo image paths here
       ],
     },
     {
@@ -71,34 +70,50 @@ export default function Portfolio() {
       links: [
         {
           label: 'Github',
-          url: 'https://github.com/yourusername/autobuilder',
+          url: 'https://github.com/embe8/car-builder-app',
           icon: <Github className="icon" />
         },
         {
-          label: 'Live Demo',
-          url: 'https://autobuilder.com',
+          label: 'Deployed Application',
+          url: 'https://car-builder-app-v2-git-main-embes-projects.vercel.app/?_vercel_share=IjBl0M8nt3vO4nGqhgfvl2WYJXuWBDKG',
           icon: <ExternalLink className="icon" />
         }
       ],
       demos: [
-        '/path/to/autobuilder-demo1.gif',
-        '/path/to/autobuilder-demo2.png',
-        // Add your actual demo image paths here
+        './src/assets/chrome_X22blpchgW.gif',
+        './src/assets/chrome_QuooudKfXY.gif',
+        './src/assets/home-1.png',
+        './src/assets/model_list.png'
       ],
     }
   ]
 
   const reviews = [
     './src/assets/review-1.png',
-    './src/assets/review-2.png',
     './src/assets/review-3.png',
     './src/assets/review-4.png',
+    './src/assets/review-5.png',
+    './src/assets/review-2.png',
+    
   ]
 
   const demoImages = [
     './src/assets/capychat-1.png',
     './src/assets/capychat-2.png',
 
+  ]
+
+  const skills = [
+    {"name": "React", "icon": ""},
+    {"name": "Python", "icon": ""},
+    {"name": "JavaScript", "icon": ""},
+    {"name": "HTML", "icon": ""},
+    {"name": "CSS", "icon": ""},
+    {"name": "PostgreSQL", "icon": ""},
+    {"name": "Supabase", "icon": ""},
+    {"name": "Git", "icon": ""},
+    {"name": "Vite", "icon": ""},
+    {"name": "Docker", "icon": ""},
   ]
 
 
@@ -116,7 +131,7 @@ export default function Portfolio() {
             {/* Title hero card content */}
             <div className="card-overlay"></div>
             <div className="card-content">
-              <div className="card-avatar"></div>
+              <div className="card-avatar">👨‍💻</div>
               <h1 className="hero-title">Erika Ebon</h1>
               <h2 className="hero-title">Full-Stack Developer</h2>
               <p className="hero-description">Entry-level developer passionate about building intuitive web applications. 
@@ -124,6 +139,22 @@ export default function Portfolio() {
               excited to contribute to innovative projects. </p>
             </div>
             </div>
+            {/* Skills Card */}
+            <div 
+            className={`card skills-card ${hoveredCard === 'skills1' ? 'hovered' : ''}`}
+            onMouseEnter={() => setHoveredCard('skills1')}
+            onMouseLeave={() => setHoveredCard(null)}
+          >
+            <Code2 className="card-icon cyan" />
+            <h3 className="card-title">Frontend</h3>
+            <div className="tech-tags">
+              {skills.slice(0, 3).map((skill) => (
+                <span key={skill.name} className="skill-badge">
+                  {skill.icon} {skill.name}
+                </span>
+              ))}
+            </div>
+          </div>
               {/* Education Card */}
             <div 
               className={`card experience-card ${hoveredCard === 'education' ? 'hovered' : ''}`}
@@ -142,6 +173,7 @@ export default function Portfolio() {
           {/* Projects Card */}
           {projects.map((project, index) => (
           <div 
+            key={index}
             className={`card project-featured ${hoveredCard === `project${index}` ? 'hovered' : ''}`}
             onMouseEnter={() => setHoveredCard(`project${index}`)}
             onMouseLeave={() => setHoveredCard(null)}
@@ -151,22 +183,28 @@ export default function Portfolio() {
               {/* Text content portion */}
             <div className="project-content">
               <div className="project-header">
-                <div className={`project-icon ${projects[0].gradient}`}>
+              <div className={`project-icon ${projects[0].gradient}`}>
                   <Briefcase className="icon" />
+                  <h3 className="text-2xl font-bold mb-2">Project</h3>
                 </div>
+                <h3 className="project-title"></h3>         
                 <div className="project-links">
-                  <button className="icon-button">
+                  <button className="icon-button" 
+                    onClick={() => window.open(project.links[0].url, '_blank')}
+                    >
                     <Github className="icon-sm" />
                   </button>
                   <button className="icon-button">
-                    <ExternalLink className="icon-sm" />
+                    <ExternalLink className="icon-sm" 
+                    onClick={() => window.open(project.links[1].url, '_blank')}
+                    />
                   </button>
                   <button 
                     onClick={() => setSelectedProject(project)}
                     className="icon-button"
                     aria-label="View demos"
                   >
-                    <Image className="icon-sm" /> {/* You'd import Image from lucide-react */}
+                    <Image className="icon-sm" /> 
                   </button>
                 </div>
               </div>
@@ -251,76 +289,6 @@ export default function Portfolio() {
           </div>
         ))}
 
-         {/* Project Carousel Card */}                      
-         <div
-            className={`card demos-card ${hoveredCard === 'demos' ? 'hovered' : ''}`}
-            onMouseEnter={() => setHoveredCard('demos')}
-            onMouseLeave={() => setHoveredCard(null)}
-            >
-               <h3 className="text-2xl font-bold mb-4">Upwork Client Reviews</h3>
-               <div className="demos-carousel">
-                 <button
-                   className="carousel-btn carousel-btn-prev"
-                   onClick={() => {
-                     const totalSlides = Math.ceil(reviews.length / 3);
-                     setCurrentReviewIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-                   }}
-                   aria-label="Previous slide"
-                 >
-                   <ChevronLeft className="carousel-icon" />
-                 </button>
-                 
-                 <div className="review-slide-container">
-                   <div 
-                     className="review-slides"
-                     style={{ transform: `translateX(-${currentReviewIndex * 100}%)` }}
-                   >
-                     {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
-                       <div key={slideIdx} className="review-slide">
-                         {reviews.slice(slideIdx * 3, slideIdx * 3 + 3).map((review, reviewIdx) => {
-                           const actualIdx = slideIdx * 3 + reviewIdx;
-                           return (
-                             <div key={actualIdx} className="review-item">
-                               <img
-                                 src={demoImages[actualIdx]}
-                                 alt={`demo-${actualIdx + 1}`}
-                                 className="review-thumbnail-img"
-                                 onClick={() => {
-                                   setSelectedDemo(demoImages);
-                                   setSelectedDemoIndex(actualIdx);
-                                 }}
-                               />
-                             </div>
-                           );
-                         })}
-                       </div>
-                     ))}
-                   </div>
-                 </div>
-
-                 <button
-                   className="carousel-btn carousel-btn-next"
-                   onClick={() => {
-                     const totalSlides = Math.ceil(reviews.length / 3);
-                     setCurrentReviewIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
-                   }}
-                   aria-label="Next slide"
-                 >
-                   <ChevronRight className="carousel-icon" />
-                 </button>
-
-                 <div className="carousel-dots">
-                   {Array.from({ length: Math.ceil(reviews.length / 3) }).map((_, slideIdx) => (
-                     <button
-                       key={slideIdx}
-                       className={`carousel-dot ${currentReviewIndex === slideIdx ? 'active' : ''}`}
-                       onClick={() => setCurrentReviewIndex(slideIdx)}
-                       aria-label={`Go to slide ${slideIdx + 1}`}
-                     />
-                   ))}
-                 </div>
-               </div>
-            </div>
             {/* Experience card content */}
             <div
             className={`card experience-card ${hoveredCard === 'experience' ? 'hovered' : ''}`}
@@ -417,8 +385,25 @@ export default function Portfolio() {
               onMouseEnter={() => setHoveredCard('contact')}
               onMouseLeave={() => setHoveredCard(null)}
               >
-              <h3 className="text-2xl font-bold mb-2">Contact</h3>
-              <p className="text-white/80 text-sm mb-4">Email: erikaebon@gmail.com</p>
+              <h2 className="text-2xl font-bold mb-2">Let's Connect</h2>
+              <p className="contact-description">Open to opportunities and collaborations</p>
+              <div className="contact-buttons">
+                <button className="contact-btn"                   
+                onClick={() => window.open('https://github.com/embe8', '_blank')}
+                >
+                  <Github className="icon-xs" /> Github
+                </button>
+                <button className="contact-btn"                   
+                onClick={() => window.open('https://www.linkedin.com/in/eebon/', '_blank')}
+                >
+                  <Linkedin className="icon-xs" /> LinkedIn
+                </button>
+                <button className="contact-btn"                   
+                onClick={() => window.open('mailto:eebon@icloud.com', '_blank')}
+                >
+                  <Mail className="icon-xs" /> Email
+                </button>
+              </div>
             </div>
             {/* Status Card */}
           <div 

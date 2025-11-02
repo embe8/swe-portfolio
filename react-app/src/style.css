@@ -58,6 +58,18 @@ position: relative;
   justify-content: space-between;
 }
 
+.card-avatar {
+  width: 5rem;
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
 @media (min-width: 768px) {
   .hero-card {
     grid-column: span 2;
@@ -134,6 +146,19 @@ position: relative;
 
 .project-content {
   width: 100%;
+  position: relative;
+}
+
+.project-header {
+  display: flex;
+  flex-direction: column; /* Stack title and icon vertically */
+  align-items: flex-start;
+}
+
+.project-icon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between icon and text */
 }
 
 .project-thumbnails {
@@ -177,6 +202,9 @@ position: relative;
   background: rgba(255, 255, 255, 0.2);
 }
 
+.project-title {
+  margin-top: 0.5rem;
+}
 .project-thumbnail-img {
   width: 100%;
   height: auto;
@@ -357,6 +385,21 @@ position: relative;
   }
 }
 
+.tech-tags {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  font-size: 0.75rem;
+  background: rgba(51, 65, 85, 0.5);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(71, 85, 105, 0.5);
+}
+
 /* Reviews Card */
 .reviews-card {
   min-height: 260px;
@@ -535,11 +578,107 @@ position: relative;
   }
 }
 
-contact-card {
+/* Contact Card */
+.contact-card {
   background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
-  border: 2px solid rgba(74, 95, 122, 0.5);
-  border-radius: 12px;
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  grid-column: span 1;
 }
+
+@media (min-width: 768px) {
+  .contact-card {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-card {
+    grid-column: span 3;
+  }
+}
+
+.contact-card.hovered {
+  transform: scale(1.02);
+}
+
+.contact-icon {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.contact-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.contact-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.icon-xs {
+  width: 1rem;
+  height: 1rem;
+}
+
+.project-links {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+/* Projects Card link icons */
+
+.icon-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+  background: rgba(51, 65, 85, 0.5);
+  border: none;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background: rgba(51, 65, 85, 1);
+}
+
+.icon-sm {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
