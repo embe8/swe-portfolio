@@ -34,6 +34,137 @@ position: relative;
   gap: 1.5rem;
 }
 
+@media (max-width: 767px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .portfolio-container {
+    padding: 0.75rem;
+  }
+  
+  /* Ensure all cards take full width on mobile */
+  .hero-card,
+  .skills-card,
+  .education-card,
+  .experience-card,
+  .project-featured,
+  .reviews-card,
+  .contact-card,
+  .status-card {
+    grid-column: span 1 !important;
+  }
+  
+  /* Adjust card padding for mobile */
+  .card {
+    padding: 1rem;
+  }
+  
+  /* Font size adjustments */
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+  
+  /* Project layout adjustments */
+  .project-layout {
+    gap: 1rem;
+  }
+  
+  /* Project demo carousel - show 1 image per slide on mobile */
+  .project-demo-slide {
+    gap: 0.5rem;
+  }
+  
+  .project-demo-item {
+    flex: 1;
+  }
+  
+  /* Review carousel - show 1 image per slide on mobile */
+  .review-slide {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .review-item {
+    flex: 1;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+  }
+  
+  .contact-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .project-links {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin-top: 0.5rem;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-container {
+    padding: 0.5rem;
+  }
+  
+  .card {
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+  
+  .hero-title {
+    font-size: 1.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.125rem;
+  }
+  
+  .project-thumbnail-img {
+    max-height: 100px;
+    min-height: 80px;
+  }
+  
+  .review-thumbnail-img {
+    min-height: 100px;
+    max-height: 120px;
+  }
+  
+  .carousel-btn,
+  .project-carousel-btn {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .carousel-icon,
+  .project-carousel-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .portfolio-container {
+    min-height: -webkit-fill-available;
+  }
+}
+
 .card {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
   border: 2px solid rgba(74, 95, 122, 0.5);
