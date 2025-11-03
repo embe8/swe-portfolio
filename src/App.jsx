@@ -3,6 +3,26 @@ import { useState, useEffect } from 'react'
 import { GraduationCap, Github, AppWindow, ExternalLink, Code2, Briefcase, Mail, Image, ChevronLeft, ChevronRight, Linkedin, Server } from 'lucide-react'
 import Modal from './components/Modal'
 
+// Import images for projects
+import loginPage from './assets/login_page.png'
+import registerPage from './assets/register_page.png'
+import chatsComponent from './assets/chats_component.png'
+import loggingIn from './assets/logging_in.gif'
+import sendingMessage from './assets/sending_message.gif'
+import sendingImage from './assets/sending_image.gif'
+import chromeX22blpchgW from './assets/chrome_X22blpchgW.gif'
+import chromeQuooudKfXY from './assets/chrome_QuooudKfXY.gif'
+import home1 from './assets/home-1.png'
+import chromeUgSu4h9hFT from './assets/chrome_ugSu4h9hFT.png'
+import modelList from './assets/model_list.png'
+
+// Import review images
+import review1 from './assets/review-1.png'
+import review2 from './assets/review-2.png'
+import review3 from './assets/review-3.png'
+import review4 from './assets/review-4.png'
+import review5 from './assets/review-5.png'
+
 export default function Portfolio() {
   const [hoveredCard, setHoveredCard] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -56,12 +76,12 @@ export default function Portfolio() {
         }
       ],
       demos: [
-        './src/assets/login_page.png',
-        './src/assets/register_page.png',
-        './src/assets/chats_component.png',
-        './src/assets/logging_in.gif',
-        './src/assets/sending_message.gif',
-        './src/assets/sending_image.gif',
+        loginPage,
+        registerPage,
+        chatsComponent,
+        loggingIn,
+        sendingMessage,
+        sendingImage,
       ],
     },
     {
@@ -82,28 +102,21 @@ export default function Portfolio() {
         }
       ],
       demos: [
-        './src/assets/chrome_X22blpchgW.gif',
-        './src/assets/chrome_QuooudKfXY.gif',
-        './src/assets/home-1.png',
-        './src/assets/chrome_ugSu4h9hFT.png',
-        './src/assets/model_list.png'
+        chromeX22blpchgW,
+        chromeQuooudKfXY,
+        home1,
+        chromeUgSu4h9hFT,
+        modelList
       ],
     }
   ]
 
   const reviews = [
-    './src/assets/review-1.png',
-    './src/assets/review-3.png',
-    './src/assets/review-4.png',
-    './src/assets/review-5.png',
-    './src/assets/review-2.png',
-    
-  ]
-
-  const demoImages = [
-    './src/assets/capychat-1.png',
-    './src/assets/capychat-2.png',
-
+    review1,
+    review3,
+    review4,
+    review5,
+    review2,
   ]
 
   const skills = [
