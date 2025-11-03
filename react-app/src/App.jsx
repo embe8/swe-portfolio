@@ -58,8 +58,12 @@ export default function Portfolio() {
         }
       ],
       demos: [
-        './src/assets/capychat-1.png',
-        './src/assets/capychat-2.png',
+        './src/assets/login_page.png',
+        './src/assets/register_page.png',
+        './src/assets/chats_component.png',
+        './src/assets/logging_in.gif',
+        './src/assets/sending_message.gif',
+        './src/assets/sending_image.gif',
       ],
     },
     {
