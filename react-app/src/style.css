@@ -82,9 +82,57 @@ position: relative;
   }
 }
 
+/*Education Card */
+.education-card {
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .education-card {
+    grid-column: span 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .education-card {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .education-card {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.education-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.education-content {
+  margin-top: 0.5rem;
+}
+
+.education-degree {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.education-years {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 /* Experience Card */
 .experience-card {
-  min-height: 260px;
+  min-height: 200px;
 }
 
 @media (min-width: 1024px) {
@@ -93,13 +141,59 @@ position: relative;
   }
 }
 
+.experience-header {
+  margin-bottom: 1.5rem;
+}
+
+.experience-content {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.experience-item {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .experience-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.experience-role {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 0.25rem;
+}
+
+.experience-company {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.125rem;
+}
+
+.experience-date {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+
 /* Experience list spacing */
 .experience-list {
   list-style: disc inside;
+  margin-top: 0.5rem;
 }
 
 .experience-list li {
   margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 /* Projects Card */
@@ -115,7 +209,7 @@ position: relative;
 
 /* Skills Card */
 .skills-card {
-  min-height: 260px;
+  min-height: 200px;
   display: flex;
   flex-direction: row;
   gap: 2rem;
@@ -150,6 +244,18 @@ position: relative;
 
 .card-icon.cyan {
   color: #06b6d4;
+}
+
+.card-icon.orange {
+  color: #f97316;
+}
+
+.card-icon.purple {
+  color: #a855f7;
+}
+
+.card-icon.pink {
+  color: #ec4899;
 }
 
 .card-title {
@@ -225,6 +331,19 @@ position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem; /* Space between icon and text */
+}
+
+
+.project-icon.blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);
+}
+
+.project-icon.purple {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+.project-icon.orange {
+  background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
 }
 
 .project-thumbnails {
@@ -748,5 +867,21 @@ position: relative;
 .icon-sm {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+.status-card {
+  grid-column: span 3;
+}
+
+.status-title {
+  margin-top: 1rem;
+}
+
+.status-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #10b981;
+  border-radius: 9999px;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 

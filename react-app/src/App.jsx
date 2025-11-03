@@ -32,17 +32,15 @@ export default function Portfolio() {
       stars.appendChild(starEl)
     }
 
-    // generate stars (adjust count if needed)
     for (let i = 0; i <= 500; i++) createStar()
 
-    // optional cleanup on unmount
     return () => { stars.innerHTML = '' }
   }, [])
  
   const projects = [
     {
       title: 'CapyChat Real Time Chat Application',
-      description: 'A real-time chat application built with React, Node.js, and Firebase',
+      description: 'A modern, real-time messaging platform enabling instant communication with image sharing, user authentication, and live message synchronization. Features include secure login/registration, persistent chat history, and seamless multi-device support for a smooth user experience.',
       tech: ['React', 'Node.js', 'Firebase'],
       gradient: 'bg-gradient-to-r from-cyan-500 to-blue-500',
       links: [
@@ -68,7 +66,7 @@ export default function Portfolio() {
     },
     {
       title: 'AutoBuilder Car Configuration Application',
-      description: 'A car configuration application where users can select the model, trims, and features of an automobile',
+      description: 'An interactive automotive customization platform that allows users to build and configure their ideal vehicle. Users can browse models, customize trims and features, view real-time pricing updates, and save their configurations with persistent data storage for an enhanced car-buying experience.',
       tech: ['React', 'Node.js', 'Supabase'],
       gradient: 'bg-gradient-to-r from-purple-500 to-pink-500',
       links: [
@@ -138,7 +136,7 @@ export default function Portfolio() {
             <div className="card-content">
               <div className="card-avatar">👨‍💻</div>
               <h1 className="hero-title">Erika Ebon</h1>
-              <h2 className="hero-title">Full-Stack Developer</h2>
+              <h2 className="hero-title">Software Developer</h2>
               <p className="hero-description">Entry-level developer passionate about building intuitive web applications. 
               Experienced in React, Python, and modern web technologies. Always learning and 
               excited to contribute to innovative projects. </p>
@@ -175,17 +173,25 @@ export default function Portfolio() {
           </div>
               {/* Education Card */}
             <div 
-              className={`card experience-card ${hoveredCard === 'education' ? 'hovered' : ''}`}
+              className={`card education-card ${hoveredCard === 'education' ? 'hovered' : ''}`}
               onMouseEnter={() => setHoveredCard('education')}
               onMouseLeave={() => setHoveredCard(null)}
             >
-              <GraduationCap className="w-8 h-8 text-cyan-400 mb-3" />
-              <h3 className="text-lg font-bold mb-3">Education</h3>
-              <div className="flex flex-wrap gap-2">
-                    <h4>California State University, Long Beach</h4>
-                    <p>Bachelors of Science in Computer Science, 2021-2024</p>
-                    <h4>Mt. San Jacinto College, Menifee, CA</h4>
-                    <p>Associate of Science in Computer Science, 2017-2021</p>
+              <div className="education-section">
+                <GraduationCap className="card-icon orange" />
+                <h4 className="card-title">California State University, Long Beach</h4>
+                <div className="education-content">
+                  <p className="education-degree">Bachelors of Science in Computer Science</p>
+                  <p className="education-years">2021-2024</p>
+                </div>
+              </div>
+              <div className="education-section">
+                <GraduationCap className="card-icon orange" />
+                <h4 className="card-title">Mt. San Jacinto College, Menifee</h4>
+                <div className="education-content">
+                  <p className="education-degree">Associate of Science in Computer Science</p>
+                  <p className="education-years">2017-2021</p>
+                </div>
               </div>
             </div>
           {/* Projects Card */}
@@ -202,8 +208,8 @@ export default function Portfolio() {
             <div className="project-content">
               <div className="project-header">
               <div className={`project-icon ${projects[0].gradient}`}>
-                  <AppWindow className="icon" />
-                  <h3 className="text-2xl font-bold mb-2">Project</h3>
+                  <AppWindow className=" card-icon purple" />
+                  <h3 className="card-title">Project</h3>
                 </div>
                 <h3 className="project-title"></h3>         
                 <div className="project-links">
@@ -314,21 +320,30 @@ export default function Portfolio() {
             onMouseLeave={() => setHoveredCard(null)}
             >
               <div className="project-icon">
-            <Briefcase className="icon" />
-               <h3 className="text-2xl font-bold mb-2">Experience</h3>
-               </div>
-                <h4 className="text-lg font-bold mb-4">Data Annotator/AI Trainer at DataAnnotation.tech (Jan 2024-Aug 2025)</h4>
-                <ul className="experience-list text-white/80 text-sm">
-                  <li>Created coding projects and challenges used to improve AI coding capabilities</li>
-                  <li>Detected and corrected errors in AI produced code to improve accuracy and efficiency</li>
-                  <li>Rated and reviewed coding submissions by peers to check if guidelines were followed</li>
-                </ul>
-                <h4 className="text-lg font-bold mb-4">Freelance Medical/General Transcriptionist (2016-2021)</h4>
-                <ul className="experience-list text-white/80 text-sm">
-                  <li>98% Client satisfaction rate with repeat clients and 4 and 5 star reviews (out of 5)</li>
-                  <li>Top rated freelancer at Upwork for three consecutive years (top 10% of freelancers and agencies for consistent client satisfaction and strong reputations)</li>
-                  <li>Worked with a wide range of clients, from medical professionals to legal firms, transcribing medical reports, focus group discussions and one on one interviews</li>
-                </ul>
+              <Briefcase className="card-icon pink" />
+                <h3 className="card-title">Experience</h3>
+              </div>
+              <div className="experience-content">
+                <div className="experience-item">
+                  <h4 className="experience-role">Data Annotator/AI Trainer</h4>
+                  <p className="experience-company">DataAnnotation.tech</p>
+                  <p className="experience-date">Jan 2024 - Aug 2025</p>
+                  <ul className="experience-list">
+                    <li>Created coding projects and challenges to improve AI coding capabilities</li>
+                    <li>Debugged and optimized AI-generated code for accuracy and efficiency</li>
+                    <li>Evaluated peer submissions for guideline compliance and technical clarity</li>
+                  </ul>
+                </div>
+                <div className="experience-item">
+                  <h4 className="experience-role">Freelance Medical/General Transcriptionist</h4>
+                  <p className="experience-company">Self-Employed</p>
+                  <p className="experience-date">2016 - 2021</p>
+                  <ul className="experience-list">
+                    <li>Delivered accurate, time-sensitive transcripts for medical and general clients</li>
+                    <li>Maintained a 98% client satisfaction rate; Top-Rated Freelancer (Top 10%)</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           {/* Reviews Card */}                      
           <div
@@ -336,7 +351,7 @@ export default function Portfolio() {
             onMouseEnter={() => setHoveredCard('reviews')}
             onMouseLeave={() => setHoveredCard(null)}
             >
-               <h3 className="text-2xl font-bold mb-4">Upwork Client Reviews</h3>
+               <h3 className="text-2xl font-bold mb-4" style={{ marginBottom: '1rem' }}>Upwork Client Reviews</h3>
                <div className="reviews-carousel">
                  <button
                    className="carousel-btn carousel-btn-prev"
@@ -406,7 +421,10 @@ export default function Portfolio() {
               onMouseEnter={() => setHoveredCard('contact')}
               onMouseLeave={() => setHoveredCard(null)}
               >
+              <div className="project-icon">
+                <Mail className="icon" />
               <h2 className="text-2xl font-bold mb-2">Let's Connect</h2>
+              </div>
               <p className="contact-description">Open to opportunities and collaborations</p>
               <div className="contact-buttons">
                 <button className="contact-btn"                   
@@ -434,8 +452,8 @@ export default function Portfolio() {
           >
             <div className="status-indicator"></div>
             <div className="status-content">
-              <p className="status-title">Available for opportunities</p>
-              <p className="status-subtitle">Open to entry-level Python & React positions</p>
+              <p className="status-title">Available for hybrid, remote or on-site opportunities</p>
+              <p className="status-subtitle">Open to entry-level software developer positions</p>
             </div>
           </div>
         </div>
