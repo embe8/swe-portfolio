@@ -116,7 +116,6 @@ export default function Portfolio() {
     {"name": "Supabase", "icon": ""},
     {"name": "Git", "icon": ""},
     {"name": "Vite", "icon": ""},
-    {"name": "Docker", "icon": ""},
   ]
 
 
