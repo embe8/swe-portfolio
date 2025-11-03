@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { GraduationCap, Github, AppWindow, ExternalLink, UserStar, Code2, Briefcase, Mail, Image, MoveDiagonal, ChevronLeft, ChevronRight, Linkedin, Server } from 'lucide-react'
+import { GraduationCap, Github, AppWindow, ExternalLink, Code2, Briefcase, Mail, Image, ChevronLeft, ChevronRight, Linkedin, Server } from 'lucide-react'
 import Modal from './components/Modal'
 
 export default function Portfolio() {
