@@ -620,6 +620,7 @@ position: relative;
 }
 
 .review-slide {
+  width: 100%;
   min-width: 100%;
   flex-shrink: 0;
   display: flex;
@@ -627,6 +628,7 @@ position: relative;
   align-items: center;
   gap: 0.75rem;
   padding: 0 0.5rem;
+  box-sizing: border-box;
 }
 
 .review-item {
