@@ -230,11 +230,11 @@ export default function Portfolio() {
                     >
                     <Github className="icon-sm" />
                   </button>
-                  {/*<button className="icon-button">
+                  {<button className="icon-button">
                     <ExternalLink className="icon-sm" 
                     onClick={() => window.open(project.links[1].url, '_blank')}
                     />
-                  </button>*/}
+                  </button>}
                   <button 
                     onClick={() => setSelectedProject(project)}
                     className="icon-button"
