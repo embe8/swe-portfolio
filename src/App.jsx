@@ -465,7 +465,7 @@ export default function Portfolio() {
             <div className="status-indicator"></div>
             <div className="status-content">
               <p className="status-title">Available for hybrid, remote or on-site opportunities</p>
-              <p className="status-subtitle">Open to entry-level software developer positions</p>
+              <p className="status-subtitle">Open to entry-level and junior software developer positions</p>
             </div>
           </div>
         </div>
