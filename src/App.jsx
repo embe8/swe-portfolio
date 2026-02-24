@@ -71,7 +71,7 @@ export default function Portfolio() {
         },
         {
           label: 'Deployed Application',
-          url: 'https://react-chat-app-4bf9-git-main-embes-projects.vercel.app/?_vercel_share=HkQhyhawIVyhoJbIXwpU5lkNSqJANX3F',
+          url: 'https://www.capychat.eebon.com/',
           icon: <ExternalLink className="icon" />
         }
       ],
@@ -97,7 +97,7 @@ export default function Portfolio() {
         },
         {
           label: 'Deployed Application',
-          url: 'https://car-builder-app-v2-git-main-embes-projects.vercel.app/?_vercel_share=IjBl0M8nt3vO4nGqhgfvl2WYJXuWBDKG',
+          url: 'https://auto-builder.eebon.com/',
           icon: <ExternalLink className="icon" />
         }
       ],
@@ -121,10 +121,10 @@ export default function Portfolio() {
 
   const skills = [
     {"name": "React", "icon": ""},
-    {"name": "Python", "icon": ""},
     {"name": "JavaScript", "icon": ""},
     {"name": "HTML", "icon": ""},
     {"name": "CSS", "icon": ""},
+    {"name": "Python", "icon": ""},
     {"name": "PostgreSQL", "icon": ""},
     {"name": "Supabase", "icon": ""},
     {"name": "Git", "icon": ""},
@@ -230,11 +230,11 @@ export default function Portfolio() {
                     >
                     <Github className="icon-sm" />
                   </button>
-                  <button className="icon-button">
+                  {/*<button className="icon-button">
                     <ExternalLink className="icon-sm" 
                     onClick={() => window.open(project.links[1].url, '_blank')}
                     />
-                  </button>
+                  </button>*/}
                   <button 
                     onClick={() => setSelectedProject(project)}
                     className="icon-button"
