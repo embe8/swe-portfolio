@@ -632,7 +632,7 @@ html, body {
 }
 
 .project-carousel-btn-prev {
-  left: -20px;
+  left: 4px;
 }
 
 .project-carousel-btn-next {
@@ -823,11 +823,11 @@ html, body {
 }
 
 .carousel-btn-prev {
-  left: 1px;
+  left: -20px;
 }
 
 .carousel-btn-next {
-  right: 1px;
+  right: -20px;
 }
 
 .carousel-icon {
