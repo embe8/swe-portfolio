@@ -632,7 +632,8 @@ html, body {
 }
 
 .project-carousel-btn-prev {
-  left: 4px;
+  position: absolute;
+  left: 0;
 }
 
 .project-carousel-btn-next {
