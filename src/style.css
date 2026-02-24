@@ -800,8 +800,8 @@ html, body {
   background: rgba(15, 23, 42, 0.8);
   border: 2px solid rgba(79, 70, 229, 0.4);
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -810,6 +810,7 @@ html, body {
   z-index: 10;
   color: white;
   backdrop-filter: blur(10px);
+  
 }
 
 .carousel-btn:hover {
@@ -823,11 +824,11 @@ html, body {
 }
 
 .carousel-btn-prev {
-  left: -20px;
+  left: 0px;
 }
 
 .carousel-btn-next {
-  right: -20px;
+  right: 0px;
 }
 
 .carousel-icon {
