@@ -225,19 +225,29 @@ export default function Portfolio() {
                 </div>
                 <h3 className="project-title"></h3>         
                 <div className="project-links">
-                  <button className="icon-button" 
+                  <button
+                    type="button"
+                    className="icon-button"
+                    title="View repository"
+                    aria-label="View repository"
                     onClick={() => window.open(project.links[0].url, '_blank')}
-                    >
+                  >
                     <Github className="icon-sm" />
                   </button>
-                  {<button className="icon-button">
-                    <ExternalLink className="icon-sm" 
+                  <button
+                    type="button"
+                    className="icon-button"
+                    title="Open live site"
+                    aria-label="Open live site"
                     onClick={() => window.open(project.links[1].url, '_blank')}
-                    />
-                  </button>}
-                  <button 
+                  >
+                    <ExternalLink className="icon-sm" />
+                  </button>
+                  <button
+                    type="button"
                     onClick={() => setSelectedProject(project)}
                     className="icon-button"
+                    title="View demos"
                     aria-label="View demos"
                   >
                     <Image className="icon-sm" /> 
